@@ -1,0 +1,34 @@
+*** Settings ***
+Resource  ../Operational/Instructions.robot
+Resource  ../Operational/Variables.robot
+
+*** Test Cases ***
+
+User logs in as a new employee
+    User visits the website
+    User logs in with his credentials
+    User checks his leave balance
+    User applies for a leave
+    User Logs out of the website
+    User Closes the Browser
+
+***Keywords***
+User visits the website
+    Given I have opened the browser successfully.
+    When I enter the valid url for the orangeHRM website.
+    Then I land on the login page of the website.
+
+User logs in with his credentials
+    Given I have landed on the login page of the orangeHRM website.
+    When I enter the valid credentials of the employee login.
+    Then I get to the employee's dashboard page.
+
+User checks his leave balance
+    Given I have logged in as an employee.
+    When I click on the leaves tab and click on my leaves sub tab.
+    Then I should be able to see my pending ,applied and remaining leaves.
+
+User applies for a leave
+    Given I have enough leave balance and move to apply leave page.
+    When I enter all the valid details and the reason for the applied leave.
+    Then I will successfully be able to apply for the leave.
